@@ -43,10 +43,10 @@ These refinements improve the physical fidelity of contact resolution in rigid-b
     <th>Velocity Auto-Correlation</th>
   </tr>
   <tr>
-    <td><img src="IMAGE/new_langston.png" alt="New Langston Model" width="300"/></td>
-    <td><img src="IMAGE/cubes.gif" alt="New Trajectory" width="300"/></td>
-    <td><img src="IMAGE/rdf.png" alt="Radial Distribution Function" width="300"/></td>
-    <td><img src="IMAGE/vacf.png" alt="Velocity Auto-Correlation Function" width="300"/></td>
+    <td><img src="image/new_langston.png" alt="Energy" width="300"/></td>
+    <td><img src="image/cubes.gif" alt="Trajectory" width="300"/></td>
+    <td><img src="image/rdf.png" alt="Radial Distribution Function" width="300"/></td>
+    <td><img src="image/vacf.png" alt="Velocity Auto-Correlation Function" width="300"/></td>
   </tr>
 </table>
 
