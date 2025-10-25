@@ -47,9 +47,11 @@ The codes have been tested with [LAMMPS (22 Jul 2025)](https://download.lammps.o
    Get the source from the [LAMMPS download page](https://download.lammps.org/tars/index.html).
 
 2. **Copy source files**  
-   Copy the following files into the `lammps/src/BODY/` directory:
-   - `pair_body_rounded_polyhedron.cpp`
-   - `pair_body_rounded_polyhedron.h`
+  Copy the files from `~/BODY/` into the `lammps/src/BODY/` directory:
+  
+  ```bash
+  cp ~/BODY/* lammps/src/BODY/
+  ```
 
 3. **Build LAMMPS with the BODY package**  
    Follow the official instructions to:
