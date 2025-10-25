@@ -12,12 +12,12 @@ To ensure **energy-conserving dynamics**, interactions have been modified to eli
 
 ### Contact Points Detection
 
-- **2D Interactions**  
-  → Vertex → Boundary  
+**2D Interactions**  
+🔹 **Vertex → Boundary**
 
-- **3D Interactions**  
-  → Vertex → Surface  
-  → Edge → Edge
+**3D Interactions**  
+🔹 **Vertex → Surface**  
+🔹 **Edge → Edge**
 
 These refinements improve the physical fidelity of contact resolution in rigid-body simulations, especially for complex polyhedral interactions.
 
