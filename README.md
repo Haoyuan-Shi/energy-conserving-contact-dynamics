@@ -82,3 +82,10 @@ To generate energy plots from your LAMMPS simulation:
 
 ## 🧪 Test
 A sample system containing 125 cubes is available in the `~/test` directory.
+
+## 💡 Example
+All simulation scripts used in the manuscript can be found in the `~/example` directory.
+
+## 📄 Citation
+Shi, Haoyuan, Christopher J. Mundy, Gregory K. Schenter, and Jaehun Chun.  
+"Energy-Conserving Contact Dynamics of Nonspherical Rigid-Body Particles." (submitted).
