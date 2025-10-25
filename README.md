@@ -10,7 +10,7 @@ This implementation introduces key improvements for handling rigid body interact
 
 To ensure **energy-conserving dynamics**, interactions have been modified to eliminate **discontinuous forces**. Smooth contact transitions are achieved by refining the contact detection logic based on geometric relevance, resulting in stable and physically consistent simulations.
 
-### Contact Points Detection
+#### Contact Points Detection
 
 **2D Interactions**  
 🔹 **Vertex → Boundary**
