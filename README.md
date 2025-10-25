@@ -91,4 +91,4 @@ To generate energy plots from your LAMMPS simulation:
   ```
 
 ## 🧪 Test
-A sample system containing 125 cubes is available in the `~/Test` directory.
+A sample system containing 125 cubes is available in the `~/test` directory.
