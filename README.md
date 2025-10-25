@@ -34,7 +34,7 @@ These refinements improve the physical fidelity of contact resolution in rigid-b
 
 ## Visual Overview
 
-<table>
+<table style="border-collapse: collapse; text-align: center;">
   <tr>
     <th>Model (125 cubes with density: 0.125)</th>
     <th>Trajectory</th>
@@ -42,16 +42,12 @@ These refinements improve the physical fidelity of contact resolution in rigid-b
     <th>Velocity Auto-Correlation</th>
   </tr>
   <tr>
-    <td><img src="image/energy.png" alt="Energy" width="300"/></td>
-    <td><img src="image/cubes.gif" alt="Trajectory" width="180"/></td>
-    <div style="width:300px;">
-    <td><img src="image/rdf.png" alt="Radial Distribution Function" width="100%"/></td>
-    </div>
-    <td><img src="image/vacf.png" alt="Velocity Auto-Correlation Function" width="300"/></td>
+    <td><img src="image/energy.png" alt="Energy" width="300" height="300"/></td>
+    <td><img src="image/cubes.gif" alt="Trajectory" width="300" height="300"/></td>
+    <td><img src="image/rdf.png" alt="Radial Distribution Function" width="300" height="300"/></td>
+    <td><img src="image/vacf.png" alt="Velocity Auto-Correlation Function" width="300" height="300"/></td>
   </tr>
 </table>
-
-
 
 ## 🔧 Installation
 
