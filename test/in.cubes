@@ -1,0 +1,53 @@
+# 3d rounded cubes
+
+variable    r     index 5
+variable    steps index 100000
+
+units       lj
+dimension   3
+newton on
+
+neighbor     1.0 bin
+neigh_modify every 1 delay 0 check yes
+
+atom_style  body rounded/polyhedron 1 10
+
+read_data   data.cubes
+
+replicate   $r $r $r
+
+change_box all x final -$r $r y final -$r $r z final -$r $r
+
+velocity all create 3 4928459 rot yes dist gaussian
+
+variable cut_inner  equal 0.0
+variable k_n        equal 150
+variable k_na       equal 0
+variable c_n        equal 0
+variable c_t        equal 0
+variable mu         equal 0
+variable A_ua       equal 1
+
+pair_style body/rounded/polyhedron ${c_n} ${c_t} ${mu} ${A_ua} ${cut_inner}
+pair_coeff * * ${k_n} ${k_na}
+
+comm_modify vel yes
+
+timestep     0.0001
+
+fix          1 all nve/body
+# fix          1 all nvt/body temp 1.5 1.5 0.2 drag 2
+
+compute 1 all temp/body
+
+compute 10 all property/atom x y z quatw quati quatj quatk
+dump mydump all custom 100 dump.quat id c_10[1] c_10[2] c_10[3] c_10[4] c_10[5] c_10[6] c_10[7]
+
+thermo_style custom step temp ke pe etotal c_1
+
+thermo       100
+thermo_modify norm no
+
+velocity all zero linear
+
+run          ${steps}
