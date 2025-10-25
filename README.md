@@ -1,34 +1,21 @@
 # Energy-Conserving Contact Dynamics of Nonspherical Rigid-Body Particles
 
-This repository provides a modified implementation of the Langston model for simulating body particles in LAMMPS (22 Jul 2025). The modifications are based on the original framework by [Langston et al., 2010](https://link.springer.com/article/10.1007/s10035-010-0217-4), with improvements designed to eliminate discontinuous forces in body particle interactions.
+This repository provides a fully enhanced rigid-body particle simulation for LAMMPS (22 Jul 2025). Based on [Langston et al., 2010](https://link.springer.com/article/10.1007/s10035-010-0217-4), this framework resolve discontinuous forces and expand the model to support complex particle interactions and energy-conserving dynamic behaviors.
 
 ## 🚀 Contribution
 
-This implementation introduces key improvements for handling rigid body interactions in simulations, focusing on **energy conservation** and **interaction prioritization**.
+This implementation introduces key improvements for handling rigid body interactions in simulations, focusing on **energy conservation**.
 
 ### Energy Conservation via Conservative Forces
 
-To avoid **discontinuous forces**, interactions are modified to ensure smooth contact transitions. Discontinuities are eliminated by refining contact detection logic and prioritizing interactions based on geometric relevance.
+To ensure **energy-conserving dynamics**, interactions have been modified to eliminate **discontinuous forces**. Smooth contact transitions are achieved by refining the contact detection logic based on geometric relevance, resulting in stable and physically consistent simulations.
 
-### Interaction Priority Hierarchy
+### Contact Points Detection
 
-Contact interactions follow a hierarchy based on geometric configuration:
-
-- **Edge–Edge case**:
-  Edge–Edge > Vertex–Edge > Vertex–Vertex
-
-- **Edge–Face case**:
-  Edge–Face (Vertex–Face) > Vertex–Edge > Vertex–Vertex
-
-### Contact Point Evaluation
-
-The contact point is validated to ensure it lies **within the particle skin** but **not directly on an edge or face**, avoiding instability in force computation.
-
-- **Edge–Edge case**:
-  Edge–Edge Distance ≤ Vertex–Edge Distance ≤ Vertex–Vertex Distance
-
-- **Edge–Face case**:
-  Edge–Face (Vertex–Face) Distance ≤ Vertex–Edge Distance ≤ Vertex–Vertex Distance
+- **2D:** Vertex–Boundary Interaction  
+- **3D:** 
+  - Vertex–Surface Interaction  
+  - Edge–Edge Interaction
 
 These refinements improve the physical fidelity of contact resolution in rigid-body simulations, especially for complex polyhedral interactions.
 
