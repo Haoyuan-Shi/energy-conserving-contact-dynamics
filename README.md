@@ -83,7 +83,7 @@ dump mydump all custom 100 dump.quat id c_10[1] c_10[2] c_10[3] c_10[4] c_10[5] 
 
 To generate energy plots from your LAMMPS simulation:
 
-1. Copy the contents of the `~/Plot_energy` directory into the folder containing your `log.lammps` file.
+1. Copy the contents of the `~/plot_energy` directory into the folder containing your `log.lammps` file.
 2. Run the script using:
 
   ```bash
