@@ -20,7 +20,7 @@ To ensure **energy-conserving dynamics**, interactions have been modified to eli
 
 These refinements improve the physical fidelity of contact resolution in rigid-body simulations, especially for complex polyhedral interactions.
 
-## Visual Overview
+## 🌐 Visual Overview
 
 <table style="border-collapse: collapse; text-align: center;">
   <tr>
