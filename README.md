@@ -1,5 +1,4 @@
-# energy-conserving-contact-dynamics
-Energy-Conserving Contact Dynamics of Nonspherical Rigid-Body Particles
+# Energy-Conserving Contact Dynamics of Nonspherical Rigid-Body Particles
 
 This repository provides a modified implementation of the Langston model for simulating body particles in LAMMPS (22 Jul 2025). The modifications are based on the original framework by [Langston et al., 2010](https://link.springer.com/article/10.1007/s10035-010-0217-4), with improvements designed to eliminate discontinuous forces in body particle interactions.
 
@@ -44,7 +43,7 @@ These refinements improve the physical fidelity of contact resolution in rigid-b
   </tr>
   <tr>
     <td><img src="image/energy.png" alt="Energy" width="300"/></td>
-    <td><img src="image/cubes.gif" alt="Trajectory" width="300"/></td>
+    <td><img src="image/cubes.gif" alt="Trajectory" width="200"/></td>
     <td><img src="image/rdf.png" alt="Radial Distribution Function" width="300"/></td>
     <td><img src="image/vacf.png" alt="Velocity Auto-Correlation Function" width="300"/></td>
   </tr>
