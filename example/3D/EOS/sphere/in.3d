@@ -1,0 +1,61 @@
+# 3d rounded 3d
+
+variable    r     index 5
+variable    steps index 100000
+
+units       lj
+dimension   3
+newton on
+
+neighbor     1.0 bin
+neigh_modify every 1 delay 0 check yes
+
+atom_style  body rounded/polyhedron 1 20
+
+read_data   data.3d
+
+replicate   $r $r $r
+
+change_box all x final -7.95 7.95 y final -7.95 7.95 z final -7.95 7.95
+
+velocity all create 1.5 64 rot yes dist gaussian
+set atom * quat/random 4325
+
+variable cut_inner  equal 0.0
+variable k_n        equal 100000
+variable k_na       equal 0
+variable c_n        equal 0
+variable c_t        equal 0
+variable mu         equal 0
+variable A_ua       equal 1
+
+pair_style body/rounded/polyhedron ${c_n} ${c_t} ${mu} ${A_ua} ${cut_inner}
+pair_coeff * * ${k_n} ${k_na}
+
+comm_modify vel yes
+
+timestep     0.0001
+
+compute 1 all temp/body
+compute 1p all pressure 1
+
+thermo_style custom step temp ke pe etotal c_1 press c_1p c_1p[1] c_1p[2] c_1p[3] vol
+
+thermo       100
+thermo_modify norm no
+
+compute 10 all property/atom x y z quatw quati quatj quatk
+dump mydump all custom 100 dump.quat id c_10[1] c_10[2] c_10[3] c_10[4] c_10[5] c_10[6] c_10[7]
+
+
+fix def all deform 200000 x scale 0.95 y scale 0.95 z scale 0.95
+
+fix          1 all nvt/body temp 0.75 0.75 0.01
+
+variable i loop 10
+
+label loop_start
+    run          100000
+    run          100000
+next i
+jump SELF loop_start

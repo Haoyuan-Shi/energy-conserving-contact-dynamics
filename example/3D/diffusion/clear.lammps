@@ -1,0 +1,118 @@
+# ---------- Type 1 ----------
+uncompute         msd1
+variable        twopoint1 delete
+unfix             9_1
+variable        fitslope1 delete
+
+# ---------- Type 2 ----------
+uncompute         msd2
+variable        twopoint2 delete
+unfix             9_2
+variable        fitslope2 delete
+
+# ---------- Type 3 ----------
+uncompute         msd3
+variable        twopoint3 delete
+unfix             9_3
+variable        fitslope3 delete
+
+# ---------- Type 4 ----------
+uncompute         msd4
+variable        twopoint4 delete
+unfix             9_4
+variable        fitslope4 delete
+
+# ---------- Type 5 ----------
+uncompute         msd5
+variable        twopoint5 delete
+unfix             9_5
+variable        fitslope5 delete
+
+# ---------- Angular momentum / quaternion cleanup ----------
+
+# Uncompute per-atom angular momentum and quaternion
+uncompute 11
+
+# Delete all atom-style variables for lab-frame angular momentum
+variable Lx delete
+variable Ly delete
+variable Lz delete
+
+# Delete all atom-style quaternion variables
+variable q0 delete
+variable q1 delete
+variable q2 delete
+variable q3 delete
+
+# Delete rotation matrix elements
+variable R11 delete
+variable R12 delete
+variable R13 delete
+variable R21 delete
+variable R22 delete
+variable R23 delete
+variable R31 delete
+variable R32 delete
+variable R33 delete
+
+# Delete angular momentum in body frame
+variable Lx_body delete
+variable Ly_body delete
+variable Lz_body delete
+
+# Delete moments of inertia variables
+variable is_type1 delete
+variable is_type2 delete
+variable is_type3 delete
+variable is_type4 delete
+variable is_type5 delete
+
+variable Ixx delete
+variable Iyy delete
+variable Izz delete
+
+# Delete angular velocity in body frame
+variable wx delete
+variable wy delete
+variable wz delete
+
+# Unfix the time-averaging fix
+unfix aw1
+
+# Delete averaged angular velocity variables
+variable wx2 delete
+variable wy2 delete
+variable wz2 delete
+
+# Optional: delete dump if needed
+undump dav1
+
+# --- Cleanup ---
+uncompute 11v
+unfix av1
+
+variable Vx delete
+variable Vy delete
+variable Vz delete
+variable Vx_body delete
+variable Vy_body delete
+variable Vz_body delete
+variable vx2 delete
+variable vy2 delete
+variable vz2 delete
+
+undump dlv1
+
+# --- Cleanup ---
+unfix vv1
+
+variable vvx2 delete
+variable vvy2 delete
+variable vvz2 delete
+
+undump dvv1
+
+thermo_style custom step temp ke pe etotal c_1 press c_1p vol
+
+thermo       100
+thermo_modify norm no

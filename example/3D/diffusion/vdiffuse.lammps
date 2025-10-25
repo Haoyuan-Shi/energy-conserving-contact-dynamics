@@ -1,0 +1,25 @@
+# Compute per-atom angular momentum and quaternion
+compute 11v all property/atom vx vy vz
+
+# Angular momentum components in lab frame
+variable Vx atom c_11v[1]
+variable Vy atom c_11v[2]
+variable Vz atom c_11v[3]
+
+# Angular momentum in body frame: L_body = R^T * L_lab
+variable Vx_body atom v_R11*v_Vx+v_R21*v_Vy+v_R31*v_Vz
+variable Vy_body atom v_R12*v_Vx+v_R22*v_Vy+v_R32*v_Vz
+variable Vz_body atom v_R13*v_Vx+v_R23*v_Vy+v_R33*v_Vz
+
+# Define the fix to compute time averages
+fix av1 all ave/atom 1 10 10 v_Vx_body v_Vy_body v_Vz_body
+
+variable vx2 atom f_av1[1]*10*dt
+variable vy2 atom f_av1[2]*10*dt
+variable vz2 atom f_av1[3]*10*dt
+
+fix vv1 all ave/atom 1 10 10 v_Vx v_Vy v_Vz
+
+variable vvx2 atom f_vv1[1]*10*dt
+variable vvy2 atom f_vv1[2]*10*dt
+variable vvz2 atom f_vv1[3]*10*dt

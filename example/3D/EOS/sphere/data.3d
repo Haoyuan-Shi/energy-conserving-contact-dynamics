@@ -1,0 +1,19 @@
+LAMMPS data file for polygons
+1 atoms
+1 bodies
+1 atom types
+-1.59 1.59 xlo xhi
+-1.59 1.59 ylo yhi
+-1.59 1.59 zlo zhi
+
+Atoms
+
+1 1 1 1 0 0 0
+
+Bodies
+
+1 3 10
+1 0 0
+0.1 0.1 0.1 0 0 0
+0 0 0
+2.0

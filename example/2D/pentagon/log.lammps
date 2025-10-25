@@ -16,7 +16,7 @@ dimension   2
 
 atom_style  body rounded/polygon 1 6
 atom_modify map array
-read_data   data.squares
+read_data   data.2d
 Reading data file ...
   orthogonal box = (0 0 -0.5) to (6 6 0.5)
   2 by 2 by 1 MPI processor grid

@@ -1,0 +1,40 @@
+# ---------- Type 1 ----------
+compute         msd1 type1 msd com yes
+variable        twopoint1 equal c_msd1[4]/6/(step*dt+1.0e-6)
+fix             9_1 type1 vector 10 c_msd1[4]
+variable        fitslope1 equal slope(f_9_1)/6/(10*dt)
+
+# ---------- Type 2 ----------
+compute         msd2 type2 msd com yes
+variable        twopoint2 equal c_msd2[4]/6/(step*dt+1.0e-6)
+fix             9_2 type2 vector 10 c_msd2[4]
+variable        fitslope2 equal slope(f_9_2)/6/(10*dt)
+
+# ---------- Type 3 ----------
+compute         msd3 type3 msd com yes
+variable        twopoint3 equal c_msd3[4]/6/(step*dt+1.0e-6)
+fix             9_3 type3 vector 10 c_msd3[4]
+variable        fitslope3 equal slope(f_9_3)/6/(10*dt)
+
+# ---------- Type 4 ----------
+compute         msd4 type4 msd com yes
+variable        twopoint4 equal c_msd4[4]/6/(step*dt+1.0e-6)
+fix             9_4 type4 vector 10 c_msd4[4]
+variable        fitslope4 equal slope(f_9_4)/6/(10*dt)
+
+# ---------- Type 5 ----------
+compute         msd5 type5 msd com yes
+variable        twopoint5 equal c_msd5[4]/6/(step*dt+1.0e-6)
+fix             9_5 type5 vector 10 c_msd5[4]
+variable        fitslope5 equal slope(f_9_5)/6/(10*dt)
+
+# ---------- Thermo Output ----------
+thermo_style custom step temp ke pe etotal c_1 press c_1p vol  &
+  c_msd1[4] v_twopoint1 v_fitslope1                            &
+  c_msd2[4] v_twopoint2 v_fitslope2                            &
+  c_msd3[4] v_twopoint3 v_fitslope3                            &
+  c_msd4[4] v_twopoint4 v_fitslope4                            &
+  c_msd5[4] v_twopoint5 v_fitslope5                            
+
+thermo       100
+thermo_modify norm no

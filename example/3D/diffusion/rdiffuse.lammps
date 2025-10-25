@@ -1,0 +1,52 @@
+# Compute per-atom angular momentum and quaternion
+compute 11 all property/atom angmomx angmomy angmomz quatw quati quatj quatk
+
+# Angular momentum components in lab frame
+variable Lx atom c_11[1]
+variable Ly atom c_11[2]
+variable Lz atom c_11[3]
+
+# Quaternions
+variable q0 atom c_11[4]
+variable q1 atom c_11[5]
+variable q2 atom c_11[6]
+variable q3 atom c_11[7]
+
+# Rotation matrix elements R (body -> lab)
+variable R11 atom 1-2*(v_q2*v_q2+v_q3*v_q3)
+variable R12 atom 2*(v_q1*v_q2-v_q0*v_q3)
+variable R13 atom 2*(v_q1*v_q3+v_q0*v_q2)
+variable R21 atom 2*(v_q1*v_q2+v_q0*v_q3)
+variable R22 atom 1-2*(v_q1*v_q1+v_q3*v_q3)
+variable R23 atom 2*(v_q2*v_q3-v_q0*v_q1)
+variable R31 atom 2*(v_q1*v_q3-v_q0*v_q2)
+variable R32 atom 2*(v_q2*v_q3+v_q0*v_q1)
+variable R33 atom 1-2*(v_q1*v_q1+v_q2*v_q2)
+
+# Angular momentum in body frame: L_body = R^T * L_lab
+variable Lx_body atom v_R11*v_Lx+v_R21*v_Ly+v_R31*v_Lz
+variable Ly_body atom v_R12*v_Lx+v_R22*v_Ly+v_R32*v_Lz
+variable Lz_body atom v_R13*v_Lx+v_R23*v_Ly+v_R33*v_Lz
+
+# Moments of inertia (diagonal)
+variable is_type1 atom "type==1"
+variable is_type2 atom "type==2"
+variable is_type3 atom "type==3"
+variable is_type4 atom "type==4"
+variable is_type5 atom "type==5"
+
+variable Ixx atom v_is_type1*0.16666666666+v_is_type2*0.66666666666+v_is_type3*0.2080083823051902+v_is_type4*0.220472368328916+v_is_type5*1.33333
+variable Iyy atom v_is_type1*0.16666666666+v_is_type2*0.66666666666+v_is_type3*0.2080083823051902+v_is_type4*0.154330657830241+v_is_type5*1.33333
+variable Izz atom v_is_type1*0.16666666666+v_is_type2*0.66666666666+v_is_type3*0.2080083823051902+v_is_type4*0.154330657830241+v_is_type5*1
+
+# Angular velocity in body frame
+variable wx atom v_Lx_body/v_Ixx
+variable wy atom v_Ly_body/v_Iyy
+variable wz atom v_Lz_body/v_Izz
+
+# Define the fix to compute time averages
+fix aw1 all ave/atom 1 10 10 v_wx v_wy v_wz
+
+variable wx2 atom f_aw1[1]*10*dt
+variable wy2 atom f_aw1[2]*10*dt
+variable wz2 atom f_aw1[3]*10*dt
