@@ -1591,7 +1591,7 @@ void PairBodyRoundedPolyhedron::kernel_force(double R, int itype, int jtype,
   double shift = kna * cut_inner;
   double r_Fmin = shift / (kna + kn); 
   double E0 = -0.5 * shift * r_Fmin;
-  double E1 = -0.5 * k_n * cut_inner * r_Fmin;
+  double E1 = -0.5 * kn * cut_inner * r_Fmin;
   double e = 0;
   if (R <= 0) {           // deformation occurs
     fpair = -kn * R;
