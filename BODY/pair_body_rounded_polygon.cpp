@@ -923,7 +923,7 @@ int PairBodyRoundedPolygon::compute_distance_to_vertex(int ibody,
     d = sqrt(delx*delx + dely*dely + delz*delz);
   }
 
-  if (m == 0) return mode = NONE;
+  if (m == 0 && ednum[ibody] > 1) return mode = NONE;
 
   return mode;
 }
