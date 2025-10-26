@@ -1591,16 +1591,17 @@ void PairBodyRoundedPolyhedron::kernel_force(double R, int itype, int jtype,
   double shift = kna * cut_inner;
   double r_Fmin = shift / (kna + kn); 
   double E0 = -0.5 * shift * r_Fmin;
+  double E1 = -0.5 * k_n * cut_inner * r_Fmin;
   double e = 0;
   if (R <= 0) {           // deformation occurs
     fpair = -kn * R;
-    e = (0.5 * kn * R) * R;
+    e = (0.5 * kn * R) * R + E1;
   } else if (R <= r_Fmin) {
     fpair = -kn * R;
-    e = (0.5 * kn * R) * R;
+    e = (0.5 * kn * R) * R + E1;
   } else if (R <= cut_inner) {   // not deforming but cohesive ranges overlap
     fpair = kna * R - shift;
-    e = (-0.5 * kna * R + shift) * R + E0;
+    e = (-0.5 * kna * R + shift) * R + E0 + E1;
   } else fpair = 0.0;
   energy += e;
 }
@@ -2425,4 +2426,3 @@ void PairBodyRoundedPolyhedron::sanity_check()
   project_pt_line(a, x1, x2, h_a, d_a, t_a);
   project_pt_line(b, x1, x2, h_b, d_b, t_b);
 }
-

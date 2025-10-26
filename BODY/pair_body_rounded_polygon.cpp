@@ -537,18 +537,18 @@ void PairBodyRoundedPolygon::sphere_against_sphere(int i, int j,
 
   double r_Fmin = shift / (k_na + k_n); 
   double E0 = -0.5 * shift * r_Fmin;
-
+  double E1 = -0.5 * k_n * cut_inner * r_Fmin;
   energy = 0;
 
   if (R <= 0) {           // deformation occurs
     fpair = -k_n * R;
-    energy = (0.5 * k_n * R) * R;
+    energy = (0.5 * k_n * R) * R + E1;
   } else if (R <= r_Fmin) {
     fpair = -k_n * R;
-    energy = (0.5 * k_n * R) * R;
+    energy = (0.5 * k_n * R) * R + E1;
   } else if (R <= cut_inner) {   // not deforming but cohesive ranges overlap
     fpair = k_na * R - shift;
-    energy = (-0.5 * k_na * R + shift) * R + E0;
+    energy = (-0.5 * k_na * R + shift) * R + E0 + E1;
   } else fpair = 0.0;
 
   fx = delx*fpair/rij;
@@ -728,16 +728,17 @@ int PairBodyRoundedPolygon::vertex_against_edge(int i, int j,
 
         double r_Fmin = shift / (k_na + k_n);
         double E0 = -0.5 * shift * r_Fmin;
+        double E1 = -0.5 * k_n * cut_inner * r_Fmin;
 
         if (R <= 0) {           // deformation occurs
           fpair = -k_n * R;
-          energy = (0.5 * k_n * R) * R;
+          energy = (0.5 * k_n * R) * R + E1;
         } else if (R <= r_Fmin) {
           fpair = -k_n * R;
-          energy = (0.5 * k_n * R) * R;
+          energy = (0.5 * k_n * R) * R + E1;
         } else if (R <= cut_inner) {   // not deforming but cohesive ranges overlap
           fpair = k_na * R - shift;
-          energy = (-0.5 * k_na * R + shift) * R + E0;
+          energy = (-0.5 * k_na * R + shift) * R + E0 + E1;
         } else fpair = 0.0;
 
         fx = delx*fpair/d;
@@ -761,7 +762,7 @@ int PairBodyRoundedPolygon::vertex_against_edge(int i, int j,
         sum_torque(x[j], h_min, -fx, -fy, -fz, torque[j]);
 
         facc[0] += fx; facc[1] += fy; facc[2] += fz;
-       
+
         evdwl += energy;
       }
 
@@ -922,7 +923,7 @@ int PairBodyRoundedPolygon::compute_distance_to_vertex(int ibody,
     d = sqrt(delx*delx + dely*dely + delz*delz);
   }
 
-  if (m == 0 && ednum[ibody] > 1) return mode = NONE;
+  if (m == 0) return mode = NONE;
 
   return mode;
 }
