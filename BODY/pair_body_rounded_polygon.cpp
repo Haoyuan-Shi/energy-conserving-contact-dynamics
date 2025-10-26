@@ -761,11 +761,11 @@ int PairBodyRoundedPolygon::vertex_against_edge(int i, int j,
         sum_torque(x[j], h_min, -fx, -fy, -fz, torque[j]);
 
         facc[0] += fx; facc[1] += fy; facc[2] += fz;
+       
+        evdwl += energy;
       }
 
   } // end for looping through the vertices of body i
-
-  evdwl += energy;
 
   return interact;
 }
